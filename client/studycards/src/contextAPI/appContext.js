@@ -15,6 +15,8 @@ import {
   DELETE_COLLECTION_ERROR,
   FETCH_SINGLE_COLLECTION_ERROR,
   FETCH_SINGLE_COLLECTION_SUCCESS,
+  FETCH_STUDYCARDS_SUCCESS,
+  FETCH_STUDYCARDS_ERROR,
   /*
   DELETE_JOB_ERROR,
   FETCH_SINGLE_JOB_SUCCESS,
@@ -29,7 +31,7 @@ const initialState = {
   isAuthenticated: false,
   isLoading: false,
   collections: [],
-  collection:[],  //single collection
+  collection: [], //single collection
   errorMsg: "",
   openAlert: false,
   showError: false,
@@ -38,6 +40,7 @@ const initialState = {
   showLogOutAlert: false,
   editItem: null,
   editComplete: false,
+  flashcards: [],
 };
 const AppContext = React.createContext();
 
@@ -132,11 +135,25 @@ const AppProvider = ({ children }) => {
 
   const fetchSingleCollection = async (ctnId) => {
     setLoading();
-    createCollection();
+    fetchCollections();
     dispatch({
       type: FETCH_SINGLE_COLLECTION_SUCCESS,
       payload: ctnId,
     });
+  };
+
+  //create flashcard
+  const createFlashCard = async (Id, userInput) => {
+    setLoading();
+    try {
+      const { data } = await axios.post(`/flashCard/${Id}`, {
+        ...userInput,
+      });
+
+      dispatch({ type: CREATE_COLLECTION_SUCCESS, payload: data.collections });
+    } catch (error) {
+      dispatch({ type: CREATE_COLLECTION_ERROR });
+    }
   };
 
   /*
@@ -193,6 +210,7 @@ const AppProvider = ({ children }) => {
         deleteCollection,
         loadUser,
         fetchSingleCollection,
+        createFlashCard,
         /* fetchJobs,
         createJob,
         deleteJob,

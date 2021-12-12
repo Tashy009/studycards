@@ -12,6 +12,8 @@ import {
   DELETE_COLLECTION_ERROR,
   FETCH_SINGLE_COLLECTION_SUCCESS,
   FETCH_SINGLE_COLLECTION_ERROR,
+  FETCH_STUDYCARDS_SUCCESS,
+  FETCH_STUDYCARDS_ERROR,
 
   /*
   CREATE_JOB_SUCCESS,
@@ -129,6 +131,19 @@ const reducer = (state, action) => {
   }
   if (action.type === FETCH_SINGLE_COLLECTION_ERROR) {
     return { ...state, isLoading: false, editItem: "", singleJobError: true };
+  }
+
+  if (action.type === FETCH_STUDYCARDS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      showAlert: true,
+      openAlert: true,
+    };
+  }
+
+  if (action.type === FETCH_STUDYCARDS_ERROR) {
+    return { ...state, isLoading: false, showError: true };
   }
 
   /*

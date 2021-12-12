@@ -30,6 +30,7 @@ export default function Question() {
     showError,
     fetchSingleCollection,
     collection,
+    createFlashCard,
   } = useGlobalContext();
   useEffect(() => {
     fetchSingleCollection(id);
@@ -40,7 +41,10 @@ export default function Question() {
   console.log(collection);
 
   const [cardValues, setCardValues] = useState([{ question: "", answer: "" }]);
-  const [ctn, setCnt] = useState(collection.map((item) => item.name));
+  let ctn = collection.map((item) => {
+    return item.name;
+  });
+  console.log(ctn);
 
   const addCard = () => {
     setCardValues([...cardValues, { question: "", answer: "" }]);
@@ -64,6 +68,10 @@ export default function Question() {
       question: card.question,
       answer: card.answer,
     }));
+    newCardValues.map((card) => {
+      return createFlashCard(id, card);
+    });
+
     console.log(newCardValues);
   };
 
@@ -87,12 +95,7 @@ export default function Question() {
             Add questions cards to {ctn}
           </Typography>
 
-          <Box
-            component="form"
-            noValidate
-            /* onSubmit={} */
-            sx={{ mt: 3 }}
-          >
+          <Box component="form" Validate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             {cardValues.map((card, index) => (
               <Grid container spacing={2} key={index}>
                 <Grid item xs={12}>
@@ -114,7 +117,6 @@ export default function Question() {
                   <div>
                     <TextField
                       onChange={(e) => handleChange(e, index)}
-                      required
                       fullWidth
                       name="answer"
                       id="standard-multiline-static"
@@ -149,6 +151,7 @@ export default function Question() {
             </Button>
 
             <Button
+              type="submit"
               fullWidth
               variant="contained"
               color="secondary"
