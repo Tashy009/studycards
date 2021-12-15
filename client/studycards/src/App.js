@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
-import { Home, Dashboard, Register, Login, Question } from "./pages";
+import { Home, Dashboard, Register, Login, Question, Cards } from "./pages";
 import PrivateRoute from "./components/PrivateRoute";
 import { useGlobalContext } from "./contextAPI/appContext";
+
 function App() {
   const { loadUser, user } = useGlobalContext();
 
@@ -25,6 +26,15 @@ function App() {
         <Route path="/signup" element={<Register />} />
         <Route path="/signin" element={<Login />} />
         <Route path="/flashcard/:id" element={<Question />} />
+        <Route
+          exact
+          path="/flashcard/:id/showcards"
+          element={
+            <PrivateRoute>
+              <Cards />
+            </PrivateRoute>
+          }
+        />
 
         {/* <Route path="*">
           <Error />

@@ -60,7 +60,8 @@ const CollectionDetails = ({ id, date, name, toggleDrawer }) => {
             Add Questions Cards <AddCircleOutlineIcon />
           </Button>
           <Button
-            type="submit"
+            component={Link}
+            to={`/flashcard/${id}/showcards`}
             variant="contained"
             color="secondary"
             sx={{ mt: 3, mb: 2, width: "70%" }}

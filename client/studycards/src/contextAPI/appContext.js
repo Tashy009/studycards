@@ -13,7 +13,6 @@ import {
   CREATE_COLLECTION_ERROR,
   OPEN_ALERT,
   DELETE_COLLECTION_ERROR,
-  FETCH_SINGLE_COLLECTION_ERROR,
   FETCH_SINGLE_COLLECTION_SUCCESS,
   FETCH_STUDYCARDS_SUCCESS,
   FETCH_STUDYCARDS_ERROR,
@@ -32,15 +31,13 @@ const initialState = {
   isLoading: false,
   collections: [],
   collection: [], //single collection
+  flashcards: [], //get flashcards from collection
   errorMsg: "",
   openAlert: false,
   showError: false,
   showAlert: false,
   showCtnAlert: false,
   showLogOutAlert: false,
-  editItem: null,
-  editComplete: false,
-  flashcards: [],
 };
 const AppContext = React.createContext();
 
@@ -116,7 +113,7 @@ const AppProvider = ({ children }) => {
         ...userInput,
       });
 
-      dispatch({ type: CREATE_COLLECTION_SUCCESS, payload: data.collections });
+      dispatch({ type: CREATE_COLLECTION_SUCCESS, payload: data.collection });
     } catch (error) {
       dispatch({ type: CREATE_COLLECTION_ERROR });
     }
@@ -150,9 +147,22 @@ const AppProvider = ({ children }) => {
         ...userInput,
       });
 
-      dispatch({ type: CREATE_COLLECTION_SUCCESS, payload: data.collections });
+      dispatch({ type: CREATE_COLLECTION_SUCCESS, payload: data.flashcard });
     } catch (error) {
       dispatch({ type: CREATE_COLLECTION_ERROR });
+    }
+  };
+
+  //fetch flashcards
+
+  const fetchStudyCards = async (styId) => {
+    setLoading();
+    try {
+      const { data } = await axios.get(`/flashcard/${styId}`);
+      dispatch({ type: FETCH_STUDYCARDS_SUCCESS, payload: data.flashcards });
+    } catch (error) {
+      dispatch({ type: FETCH_STUDYCARDS_ERROR });
+      logout();
     }
   };
 
@@ -211,6 +221,7 @@ const AppProvider = ({ children }) => {
         loadUser,
         fetchSingleCollection,
         createFlashCard,
+        fetchStudyCards,
         /* fetchJobs,
         createJob,
         deleteJob,

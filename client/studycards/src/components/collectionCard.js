@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { grey } from "@mui/material/colors";
@@ -47,7 +47,7 @@ const bull = (
 );
 
 const CollectionCard = () => {
-  const { isLoading, collections, deleteCollection, showAlert } =
+  const { isLoading, collections, deleteCollection, fetchCollections } =
     useGlobalContext();
   console.log(collections);
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -73,6 +73,10 @@ const CollectionCard = () => {
   const handleClose = () => {
     setOpenDelete(false);
   };
+
+  useEffect(() => {
+    fetchCollections();
+  }, []);
 
   if (isLoading) {
     return (

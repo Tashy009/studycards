@@ -21,6 +21,7 @@ const Dashboard = () => {
     showAlert,
     fetchCollections,
     createCollection,
+    collections,
     showError,
     showCtnAlert,
   } = useGlobalContext();

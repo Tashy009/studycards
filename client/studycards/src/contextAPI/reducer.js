@@ -14,6 +14,8 @@ import {
   FETCH_SINGLE_COLLECTION_ERROR,
   FETCH_STUDYCARDS_SUCCESS,
   FETCH_STUDYCARDS_ERROR,
+  CREATE_STUDYCARD_SUCCESS,
+  CREATE_STUDYCARD_ERROR,
 
   /*
   CREATE_JOB_SUCCESS,
@@ -85,9 +87,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      editItem: null,
-      singleJobError: false,
-      editComplete: false,
+
       collections: action.payload,
     };
   }
@@ -133,7 +133,7 @@ const reducer = (state, action) => {
     return { ...state, isLoading: false, editItem: "", singleJobError: true };
   }
 
-  if (action.type === FETCH_STUDYCARDS_SUCCESS) {
+  if (action.type === CREATE_STUDYCARD_SUCCESS) {
     return {
       ...state,
       isLoading: false,
@@ -142,8 +142,19 @@ const reducer = (state, action) => {
     };
   }
 
-  if (action.type === FETCH_STUDYCARDS_ERROR) {
+  if (action.type === CREATE_STUDYCARD_ERROR) {
     return { ...state, isLoading: false, showError: true };
+  }
+
+  if (action.type === FETCH_STUDYCARDS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      flashcards: action.payload,
+    };
+  }
+  if (action.type === FETCH_STUDYCARDS_ERROR) {
+    return { ...state, isLoading: false };
   }
 
   /*
