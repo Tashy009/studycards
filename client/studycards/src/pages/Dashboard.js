@@ -36,6 +36,10 @@ const Dashboard = () => {
     setValue({ ...value, [e.target.name]: e.target.value });
   };
 
+  const handleClose = () => {
+    setCollectionModal(false);
+  };
+
   const handleSubmit = (e) => {
     const { name } = value;
     if (name) {
@@ -80,7 +84,7 @@ const Dashboard = () => {
       )}
       <CollectionFormDialog
         openMode={collectionModal}
-        handleClose={handleSubmit}
+        handleClose={handleClose}
         handleChange={handleChange}
       />
       <Box

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../contextAPI/appContext";
 import {
   Button,
@@ -21,6 +21,7 @@ import Loading from "../components/Loading";
 const theme = createTheme();
 
 export default function Question() {
+  const History = useNavigate();
   const { id } = useParams();
   const {
     user,
@@ -73,6 +74,7 @@ export default function Question() {
     });
 
     console.log(newCardValues);
+    History(`/flashcard/${id}/showcards`);
   };
 
   return (
