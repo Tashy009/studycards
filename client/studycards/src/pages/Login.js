@@ -39,8 +39,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  const { user, login, isLoading, showAlert, errorMsg, showError } =
-    useGlobalContext();
+  const { user, login, isLoading, showAlert, showError } = useGlobalContext();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -119,7 +118,7 @@ export default function Login() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

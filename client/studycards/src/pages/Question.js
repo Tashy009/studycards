@@ -15,7 +15,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Header from "../components/Header";
 
-import Alert from "../components/Alert";
 import Loading from "../components/Loading";
 
 const theme = createTheme();
@@ -27,8 +26,6 @@ export default function Question() {
     user,
     isAuthenticated,
     isLoading,
-    errorMsg,
-    showError,
     fetchSingleCollection,
     collection,
     createFlashCard,
@@ -45,7 +42,7 @@ export default function Question() {
   let ctn = collection.map((item) => {
     return item.name;
   });
-  console.log(ctn);
+ /*  console.log(ctn); */
 
   const addCard = () => {
     setCardValues([...cardValues, { question: "", answer: "" }]);

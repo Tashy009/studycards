@@ -112,6 +112,21 @@ const CollectionCard = () => {
           justifyContent: "center",
         }}
       >
+        {collections.length === 0 && (
+          <Typography
+            sx={{
+              fontSize: 20,
+              mb: 1,
+              mt: 3,
+              fontWeight: "bold",
+              flexWrap: "wrap",
+            }}
+            color="text.secondary"
+            gutterBottom
+          >
+            You don't have any collection yet.
+          </Typography>
+        )}
         {collections.map((collection, idx) => {
           const { _id: id, name, createdAt } = collection;
           let date = moment(createdAt);
