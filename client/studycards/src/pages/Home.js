@@ -19,11 +19,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      {/*  <Link color="inherit" href="https://github.com/Tashy009">
-        Tashy
-      </Link>{" "} */}
-      {new Date().getFullYear()}
-      {"."}
+      StudyCards {new Date().getFullYear()}
     </Typography>
   );
 }
@@ -50,7 +46,7 @@ export default function Home() {
                 ? theme.palette.grey[100]
                 : theme.palette.grey[900],
             flexGrow: 1,
-            height: "70vh",
+            height: "80vh",
             overflow: "auto",
             alignItems: "center",
             pt: 8,
