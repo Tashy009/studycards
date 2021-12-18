@@ -12,6 +12,7 @@ export default function CollectionFormDialog({
   openMode,
   handleClose,
   handleChange,
+  handleSubmit,
 }) {
   return (
     <div>
@@ -39,7 +40,7 @@ export default function CollectionFormDialog({
             type="submit"
             variant="contained"
             color="secondary"
-            onClick={handleClose}
+            onClick={handleSubmit}
           >
             Create
           </Button>

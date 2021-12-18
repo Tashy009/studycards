@@ -5,7 +5,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useGlobalContext } from "./contextAPI/appContext";
 
 function App() {
-  const { loadUser, user } = useGlobalContext();
+  const { loadUser } = useGlobalContext();
 
   useEffect(() => {
     loadUser();

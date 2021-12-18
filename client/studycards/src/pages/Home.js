@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "../components/Header";
 import { useGlobalContext } from "../contextAPI/appContext";
 import { Navigate } from "react-router-dom";
+import Alert from "../components/Alert";
 
 function Copyright() {
   return (
@@ -30,9 +31,12 @@ function Copyright() {
 const theme = createTheme();
 
 export default function Home() {
-  const { user } = useGlobalContext();
+  const { user, showLogOutAlert } = useGlobalContext();
   return (
     <ThemeProvider theme={theme}>
+      {showLogOutAlert && (
+        <Alert message="LogOut successfully" severity="success" />
+      )}
       {user && <Navigate to="/dashboard" />}
       <CssBaseline />
       <Header />

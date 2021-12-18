@@ -2,9 +2,7 @@ import * as React from "react";
 import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
 import { Typography } from "@mui/material";
 import Alertbar from "../components/Alert";
 import { useGlobalContext } from "../contextAPI/appContext";
@@ -12,7 +10,6 @@ import CollectionCard from "../components/collectionCard";
 import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import CollectionFormDialog from "../components/CollectionForm";
-import DeleteAlertDialog from "../components/Modal";
 
 const Dashboard = () => {
   const [collectionModal, setCollectionModal] = useState(false);
@@ -21,7 +18,6 @@ const Dashboard = () => {
     showAlert,
     fetchCollections,
     createCollection,
-    collections,
     showError,
     showCtnAlert,
   } = useGlobalContext();
@@ -71,7 +67,7 @@ const Dashboard = () => {
       {showCtnAlert && (
         <Alertbar
           open={showCtnAlert}
-          message="Collection created sucessfull"
+          message="Collection created sucessfully"
           severity="success"
         />
       )}
@@ -86,6 +82,7 @@ const Dashboard = () => {
         openMode={collectionModal}
         handleClose={handleClose}
         handleChange={handleChange}
+        handleSubmit={handleSubmit}
       />
       <Box
         component="main"

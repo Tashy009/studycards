@@ -12,7 +12,7 @@ export default function Alertbar({ open, message, severity }) {
   /* const [openAlert, setOpenAlert] = React.useState(true); */
   //setOpenAlert(open);
   const { openAlert, closeAlert } = useGlobalContext();
-  console.log(openAlert);
+  /* console.log(openAlert); */
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {

@@ -47,12 +47,14 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
-      showAlert: true,
-      openAlert: true,
+
       showError: false,
       showLogOutAlert: false,
       user: action.payload,
       isAuthenticated: true,
+      openAlert: true,
+      showCtnAlert: false,
+      showAlert: true,
     };
   }
   if (action.type === REGISTER_USER_ERROR) {
@@ -87,6 +89,7 @@ const reducer = (state, action) => {
     return {
       ...state,
       isLoading: false,
+      openAlert: true,
 
       collections: action.payload,
     };

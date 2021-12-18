@@ -15,6 +15,7 @@ import { Grid } from "@mui/material";
 import moment from "moment";
 import Loading from "./Loading";
 import DeleteAlertDialog from "./Modal";
+import Alert from "./Alert";
 
 const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "light" ? "#F6D9F6" : grey[800],
@@ -49,16 +50,17 @@ const bull = (
 const CollectionCard = () => {
   const { isLoading, collections, deleteCollection, fetchCollections } =
     useGlobalContext();
-  console.log(collections);
+  /* console.log(collections); */
   const [openDrawer, setOpenDrawer] = useState(false);
   const [ctn, setCtn] = useState({ id: "", cname: "", cdate: "" });
-  console.log(ctn);
+  /*  console.log(ctn); */
   const toggleDrawer = (id, name, date) => () => {
     setCtn({ ...ctn, id: id, cname: name, cdate: date });
     setOpenDrawer((prev) => !prev);
   };
 
   const [openDelete, setOpenDelete] = useState(false);
+  const [openDeleteAlert, setOpenDeleteAlert] = useState(false);
 
   const toggleDrawerAndDelete = () => () => {
     setOpenDrawer((prev) => !prev);
@@ -68,6 +70,7 @@ const CollectionCard = () => {
   const handleDelete = () => {
     deleteCollection(ctn.id);
     setOpenDelete(false);
+    setOpenDeleteAlert(true);
   };
 
   const handleClose = () => {
@@ -88,6 +91,9 @@ const CollectionCard = () => {
 
   return (
     <>
+      {openDeleteAlert && (
+        <Alert message="Delete successfully" severity="success" />
+      )}
       <DeleteAlertDialog
         openDel={openDelete}
         handleClose={handleClose}

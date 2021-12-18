@@ -39,8 +39,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
-  const { user, register, isLoading, showAlert, errorMsg, showError } =
-    useGlobalContext();
+  const { user, register, isLoading, showError } = useGlobalContext();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -53,12 +52,7 @@ export default function Register() {
     const { name, email, password } = values;
     register({ name, email, password });
 
-    console.log(values.name);
-    console.log({
-      data,
-      /* email: data.get("email"),
-      password: data.get("password"), */
-    });
+    // eslint-disable-next-line no-console
   };
 
   return (
@@ -66,7 +60,7 @@ export default function Register() {
       <Header />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        {showError && <Alert message={errorMsg} severity="error" />}
+        {showError && <Alert message="invalid credentiaLS" severity="error" />}
         {user && <Navigate to="/dashboard" />}
         <Box
           sx={{

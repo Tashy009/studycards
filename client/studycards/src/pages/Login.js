@@ -51,16 +51,17 @@ export default function Login() {
     const { email, password } = values;
     login({ email, password });
     // eslint-disable-next-line no-console
-    console.log({
+    /* console.log({
       email: data.get("email"),
       password: data.get("password"),
-    });
+    }); */
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Header />
-      {showError && <Alert message={errorMsg} severity="error" />}
+      {showError && <Alert message="Invalid Credentials" severity="error" />}
+      {showAlert && <Alert message="SignUp successful" severity="success" />}
       {user && <Navigate to="/dashboard" />}
       <Container component="main" maxWidth="xs">
         <CssBaseline />
