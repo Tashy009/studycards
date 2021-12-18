@@ -33,7 +33,7 @@ app.use(cors());
 app.use(xss());
 
 // Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, "../client/studycards/build")));
+app.use(express.static(path.resolve(__dirname, "./client/studycards/build")));
 
 // routes
 app.use("/api/v1/auth", authRouter);
@@ -43,7 +43,7 @@ app.use("/api/v1/flashcard", authenticateUser, flashCardRouter);
 // All other GET requests not handled before will return our React app
 app.get("*", (req, res) => {
   res.sendFile(
-    path.resolve(__dirname, "../client/studycards/build", "index.html")
+    path.resolve(__dirname, "./client/studycards/build", "index.html")
   );
 });
 
