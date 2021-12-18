@@ -2,9 +2,8 @@
   "name": "flashcardapi",
   "version": "1.0.0",
   "description": "flashcard api for students",
-  "main": "app.js",
   "scripts": {
-    "start": "node app",
+    "start": "node app.js",
     "build": "cd client && cd studycards && yarn install && yarn run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
