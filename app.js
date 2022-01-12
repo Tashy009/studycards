@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv-flow").config();
 require("express-async-errors");
 // extra security packages
 const helmet = require("helmet");
@@ -64,3 +64,5 @@ const start = async () => {
 };
 
 start();
+
+module.exports = app;
